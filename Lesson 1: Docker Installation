@@ -1,3 +1,8 @@
 Why use docker?
 
 It makes it really easy to install and run new software without worrying about setup/dependencies.
+
+======
+
+What is a container?
+Container is instance of an image. it is a program with its own space of hardware resources.
