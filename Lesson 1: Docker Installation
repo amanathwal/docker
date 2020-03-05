@@ -6,3 +6,10 @@ It makes it really easy to install and run new software without worrying about s
 
 What is a container?
 Container is instance of an image. it is a program with its own space of hardware resources.
+
+
+Docker has 
+- Docker client(Docker CLI): tool we are going to issue commands to.
+- Docker Server (Docker Daemon): tool that is responsible to create images, running containers etc.
+
+====
