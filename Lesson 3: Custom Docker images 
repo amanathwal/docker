@@ -1,0 +1,11 @@
+ =============================Custom Docker Images =============
+
+
+      Docker File -> Docker Client -> Docker Server -> Usable Image
+
+
+      Syntax for Docker File  :
+      1. Specify a base image 
+      2. Run Some commands to install additional programs 
+      3. Specify a command to run on container setup  
+          

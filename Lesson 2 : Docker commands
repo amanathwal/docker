@@ -1,0 +1,108 @@
+  1. docker version : to see the docker version 
+  2. docker run hello-world: hello world from docker , if you run this first time:
+        1. docker cli will pass it to docker server
+        2.  docker server will see it(docker image for hello-world) is not available locally in image cache. 
+        3. so it will go out to docker hub and download that to local cache and run it 
+
+        for subsequent calls it will load the image from the cache and create a container out of it.
+
+3.   docker run <image name> : create and run a container using an image name 
+
+
+4.   docker run <image name> command : create and run a container and override the default command
+         example: docker run busybox echo hi there or docker run busybox ls 
+
+         startup commands are executables present in the image so say busybox has the ls command but the hello-world does not.
+
+5. docker ps : list running containers
+         to see a container and make sure it runs for a while and example is 
+           docker run busybox ping google.com and then do docker ps
+
+6. docker ps --all : to see all containers ever created on my machine 
+
+7.  docker create <image> : create a container, it sets up file system, it gives a container id
+8. docker start <container Id>: start a container, to run the start the command. this also prints out the id
+
+9. docker start -a <container Id>: with -a option it will watch the output from the container and print it on your terminal.
+                                   this means attach to container
+
+
+
+
+10. Restarting stopped containers:
+       1. docker ps --all : to see all the containers
+       2. docker start -a <container id>
+
+       so exmaple is : 
+         1. docker run busybox echo hi there 
+         2. docker ps --all
+         3. grab the id in step 1 and 
+             do docker start -a <id> 
+            it will run the same container with same startup  command provided in step 1
+
+            NOte: so if a conatiner is created/started with a default  we cannot replace the default command if we restart.
+
+11.  docker system prune :Removing stopped containers, however it also busts docker cache so you have to re download the images from docker hub.
+
+NOTE: docker run = docker create + docker start
+
+11. To see all logs from a container:
+          lets say you started a container and forgot to add -a 
+          to see all the logs from container : 
+            docker logs <container_id>
+
+12.  To stop a container started with without a -a command: 
+                  docker stop container_id (give process sometime to kill itself after cleanup)
+                     or 
+                  docker kill container_id   (it just kills right away without any additional work)
+    if docker stop doesnot work it will automatically fallback to docker kill after 10 sec         
+13. Multi-Command Containers: 
+        Example is redis : 
+        1. we need to start redi server and then (Command: redis-server)
+        2. we need to talk to server using redis cli (Commad: redis-cli, set myNumber 5, get Mynumber)
+
+       command to execute an addtional command in a container:  
+         docker  exec -it <container_id> <command>
+
+         like 1. docker run redis 
+              2. docker ps
+              3. docker exec -it <container Id >  redis-cli
+              4. set myNumber 5
+              5. get myNumber
+
+         -it lets us run a command correctly inside the container
+     -it is 2 seperate commands -i and -t
+
+     -i means we wanna attach my terminal to standard in for our container, valid streams are STDIN, STDOUT and STDERR
+     -t makes text doing in and out little formatted
+
+14: to get shell access to your container:
+      docker exec -it <container id> sh  then you can start typing commands 
+
+      we can do the same thing with: docker run like 
+      docker run -it busybox sh 
+      but it will replace the start command 
+
+  
+
+  =============================Custom Docker Images =============
+
+
+      Docker File -> Docker Client -> Docker Server -> Usable Image
+
+
+      Syntax for Docker File  :
+      1. Specify a base image 
+      2. Run Some commands to install additional programs 
+      3. Specify a command to run on container setup  
+          
+
+
+
+              
+     
+
+
+
+
+  

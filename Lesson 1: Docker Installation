@@ -13,3 +13,6 @@ Docker has
 - Docker Server (Docker Daemon): tool that is responsible to create images, running containers etc.
 
 ====
+
+      An Image 
+        it is a snapshot of filesystem and a startup command.
