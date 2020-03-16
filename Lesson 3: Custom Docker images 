@@ -7,5 +7,35 @@
       Syntax for Docker File  :
       1. Specify a base image 
       2. Run Some commands to install additional programs 
+            # with this step it creates a temporary container from image in step 1 and starts 
+            # a temporary container and then this command was ran as primary instruction
+            # and does its work, then the container is removed after taking a snapshot of its #current filesystem and save it as an image.
       3. Specify a command to run on container setup  
+           # it looks at image from previous step and sets the primary command to this whenever 
+           # you run and then shuts down that container
           
+
+          example: run a docker file that runs redis-server
+
+          1. Create a file and then a file Dockerfile (not extention)
+          2. Here are the contents 
+           
+           # Use an existing docker image as a base 
+           FROM alpine
+            
+
+           #Download and install a dependency 
+           RUN apk add --update redis  # apk is package manmager that comes with alpine
+
+           #tell the image what to do when it starts as  a container 
+           CMD ["redis-server"]
+
+
+           3. then run the command >>>  docker build .  
+              # give the file to docker-cli , . is the context
+             
+           4.  copy the id and then run 
+              docker run {id}
+
+     In case we add more instructions to step 2 , it wont fetch the previous images again it will just use those from cache
+

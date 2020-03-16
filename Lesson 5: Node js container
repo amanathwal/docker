@@ -1,0 +1,42 @@
+##### Create a Node JS app running in a container ###
+
+1. Create a Node JS webapp
+
+2. Create a Dockerfile  (name is exact without an extension)
+    here is how the overall will be 
+
+    find the base image from dockerhub
+
+      1. From node:( version ) or node:alpine  # alpine tag means most stripped down installation
+      2. RUN  npm install
+      3. CMD['npm', 'start'] 
+
+
+      but here package.json is not there  so here is the final dockerfile 
+        COPY ./ (this path is relative to build context)  ./  (path in container)
+
+   Final docker file 
+
+
+      1. From node:( version ) or node:alpine  # alpine tag means most stripped down installation
+      2. COPY ./ ./
+      3. RUN  npm install
+      4. CMD['npm', 'start'] 
+
+
+      then run the command: docker build -t aman/testweb:latest  .
+           :latest is optional
+
+
+      4. then start the docker : 
+          docker run   aman/testweb
+
+
+          === to map it to particular directory in container ===
+          Add WORKDIR instruction in the dockerfile 
+
+          any following commands will run in the work dir
+
+          example: WORKDIR /usr/app
+          it will create a dir if it doesnot exist 
+          and it should happen before COPY instruction before copy command

@@ -1,0 +1,11 @@
+Any time some makes a request to a port on ur computer, you should forward it to 
+container port.
+
+Container make outgoing requests but this abilility is only for incoming request 
+
+So we  change the runtime command:
+
+docker run -p (incoming port):(container port) <image name>
+
+example : 
+   docker run -p 8080:8080 <image name>

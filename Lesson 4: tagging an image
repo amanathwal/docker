@@ -1,0 +1,15 @@
+Creating an image/container generates an id, so it is hard to remember id 
+but if we change the format of docker build command we can tag the image 
+
+docker build -t name   .
+here is convention for name : 
+    your docker id / project name : version 
+    example name  : aman/redis:latest
+     
+
+====Generate an image from an container manually====
+1. docker run -it alpine sh 
+2. apk add --update redis # we have a running container , open a second terminal
+3. docker ps # to get id of the container 
+4. docker commit -c 'CMD["redis-server"]'  {container id }
+5. docker run {container id}

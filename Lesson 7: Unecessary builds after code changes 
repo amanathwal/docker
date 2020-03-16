@@ -1,0 +1,18 @@
+if you change the code in the node js app, we have to rebuild the container every time 
+    since the snapshot was taken with every time the container is created.
+    if we rebuild the container, steps with copy and after are re done (like npm install) which is not good.
+
+
+    what we do is split the copy statement,
+    so final Dockerfile 
+
+    FROM alpine:node 
+
+    WORKDIR /usr/app
+
+    COPY ./package.json ./
+    RUN npm install
+    COPY ./ ./ 
+
+    CMD ["npm", "start"]
+
